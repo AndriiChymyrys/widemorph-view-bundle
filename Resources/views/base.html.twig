@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('backoffice') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('backoffice') }}
+    {% endblock %}
+</head>
+<body>
+{% block body %}{% endblock %}
+</body>
+</html>

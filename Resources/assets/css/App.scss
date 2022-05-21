@@ -1,0 +1,10 @@
+@import 'node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
+@import 'node_modules/@fortawesome/fontawesome-free/scss/regular';
+@import 'node_modules/@fortawesome/fontawesome-free/scss/solid';
+@import 'node_modules/@fortawesome/fontawesome-free/scss/v4-shims';
+
+@import './vendor/adminlte.min.css';
+
+.width400 {
+  width: 400px !important;
+}

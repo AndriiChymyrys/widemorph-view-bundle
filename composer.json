@@ -1,0 +1,13 @@
+{
+    "name": "widemorph/morph-view-bundle",
+    "autoload": {
+        "psr-4": {
+            "WideMorph\\Morph\\Bundle\\MorphViewBundle\\": ""
+        }
+    },
+    "require": {
+        "symfony/webpack-encore-bundle": "^1.12",
+        "twig/extra-bundle": "^2.12|^3.0",
+        "twig/twig": "^2.12|^3.0"
+    }
+}
