@@ -27,5 +27,6 @@ class MorphViewExtension extends Extension
         );
 
         $loader->load('presentation.xml');
+        $loader->load('infrastructure.xml');
     }
 }
