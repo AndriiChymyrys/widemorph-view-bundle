@@ -11,7 +11,7 @@ use WideMorph\Morph\Bundle\MorphViewBundle\Infrastructure\DTO\SideBarLinkDTO;
  *
  * @package WideMorph\Morph\Bundle\MorphViewBundle\Infrastructure\Twig
  */
-interface SideBarLinkExtensionInterface
+interface SideBarLinkInterface
 {
     /**
      * @param SideBarLinkDTO $barLinkDTO

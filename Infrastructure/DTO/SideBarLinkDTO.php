@@ -17,13 +17,13 @@ class SideBarLinkDTO
      * @param string $routeName
      * @param string $label
      * @param int $priority
-     * @param string|null $parentRoute
+     * @param string|null $parentRouteName
      */
     public function __construct(
         protected string $routeName,
         protected string $label,
         protected int $priority = 0,
-        protected ?string $parentRoute = null
+        protected ?string $parentRouteName = null
     ) {
     }
 
@@ -46,9 +46,9 @@ class SideBarLinkDTO
     /**
      * @return string|null
      */
-    public function getParentRoute(): ?string
+    public function getParentRouteName(): ?string
     {
-        return $this->parentRoute;
+        return $this->parentRouteName;
     }
 
     /**

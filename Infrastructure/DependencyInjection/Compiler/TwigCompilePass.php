@@ -7,7 +7,7 @@ namespace WideMorph\Morph\Bundle\MorphViewBundle\Infrastructure\DependencyInject
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
-use WideMorph\Morph\Bundle\MorphViewBundle\Infrastructure\Twig\SideBarLinkExtension;
+use WideMorph\Morph\Bundle\MorphViewBundle\Infrastructure\Twig\SideBarLink;
 
 /**
  * Class TwigCompilePass
@@ -24,6 +24,6 @@ class TwigCompilePass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         $container->getDefinition('twig')
-            ->addMethodCall('addGlobal', ['side_bar_links', new Reference(SideBarLinkExtension::class)]);
+            ->addMethodCall('addGlobal', ['side_bar_links', new Reference(SideBarLink::class)]);
     }
 }

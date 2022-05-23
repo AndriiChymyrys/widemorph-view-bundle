@@ -5,6 +5,11 @@
             "WideMorph\\Morph\\Bundle\\MorphViewBundle\\": ""
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "WideMorph\\Morph\\Bundle\\MorphViewBundle\\Tests\\": "Tests/"
+        }
+    },
     "require": {
         "symfony/webpack-encore-bundle": "^1.12",
         "twig/extra-bundle": "^2.12|^3.0",
