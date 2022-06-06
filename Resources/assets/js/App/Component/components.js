@@ -1,7 +1,7 @@
-import Navbar from "./Navbar/Navbar";
-import Sidebar from "./Sidebar/Sidebar";
+import NavbarToggle from "./NavbarToggle/NavbarToggle";
+import SidebarMenu from "./SidebarMenu/SidebarMenu";
 
 export default {
-    'nav-bar': Navbar,
-    'sidebar': Sidebar,
+    'navbar-toggle': NavbarToggle,
+    'sidebar-menu': SidebarMenu,
 }

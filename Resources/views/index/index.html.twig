@@ -1,5 +1,9 @@
 {% extends '@MorphView/layout.html.twig' %}
 
+{% pcvarset('page_title', 'Home Page') %}
+
+{% pcvarget.page_title %}
+
 {% block page_content %}
     here
 {% endblock page_content %}

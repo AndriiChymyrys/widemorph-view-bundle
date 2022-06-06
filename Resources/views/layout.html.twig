@@ -5,13 +5,19 @@
     <div class="wrapper" id="app">
         {% block navbar %}
             <!-- Navbar -->
-            <nav-bar></nav-bar>
+            <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+                <!-- Left navbar links -->
+                {% include '@MorphView/partials/left_navbar_links.html.twig' %}
+
+                <!-- Right navbar links -->
+                {% include '@MorphView/partials/right_navbar_links.html.twig' %}
+            </nav>
             <!-- /.navbar -->
         {% endblock %}
 
         {% block sidebar %}
             <!-- Main Sidebar Container -->
-            <sidebar :links="{{ side_bar_links.getMenuLinks()|json_encode }}"></sidebar>
+            {% include '@MorphView/partials/sidebar.html.twig' %}
         {% endblock %}
 
         <!-- Content Wrapper. Contains page content -->
@@ -21,15 +27,10 @@
                 <div class="content-header">
                     <div class="container-fluid">
                         <div class="row mb-2">
-                            <div class="col-sm-6">
-                                <h1 class="m-0">Starter Page</h1>
-                            </div><!-- /.col -->
-                            <div class="col-sm-6">
-                                <ol class="breadcrumb float-sm-right">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item active">Starter Page</li>
-                                </ol>
-                            </div><!-- /.col -->
+                            {% include '@MorphView/partials/page_title.html.twig' %}
+                            {% block breadcrumb %}
+                                {% include '@MorphView/partials/breadcrumb.html.twig' %}
+                            {% endblock %}
                         </div><!-- /.row -->
                     </div><!-- /.container-fluid -->
                 </div>
@@ -61,14 +62,7 @@
 
         {% block footer %}
             <!-- Main Footer -->
-            <footer class="main-footer">
-                <!-- To the right -->
-                <div class="float-right d-none d-sm-inline">
-                    Anything you want
-                </div>
-                <!-- Default to the left -->
-                <strong>Copyright &copy; 2021 <a href="/">Adviser</a>.</strong> All rights reserved.
-            </footer>
+            {% include '@MorphView/partials/footer.html.twig' %}
         {% endblock %}
     </div>
     </body>

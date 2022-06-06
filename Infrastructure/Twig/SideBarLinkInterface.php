@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace WideMorph\Morph\Bundle\MorphViewBundle\Infrastructure\Twig;
 
-use WideMorph\Morph\Bundle\MorphViewBundle\Infrastructure\DTO\SideBarLinkDTO;
-
 /**
  * Class SideBarLinkExtensionInterface
  *
@@ -14,11 +12,19 @@ use WideMorph\Morph\Bundle\MorphViewBundle\Infrastructure\DTO\SideBarLinkDTO;
 interface SideBarLinkInterface
 {
     /**
-     * @param SideBarLinkDTO $barLinkDTO
+     * @param string $routeName
+     * @param string $label
+     * @param int $priority
+     * @param string|null $parentRouteName
      *
      * @return void
      */
-    public function addLink(SideBarLinkDTO $barLinkDTO): void;
+    public function addLink(
+        string $routeName,
+        string $label,
+        int $priority = 0,
+        ?string $parentRouteName = null
+    ): void;
 
     /**
      * @return array

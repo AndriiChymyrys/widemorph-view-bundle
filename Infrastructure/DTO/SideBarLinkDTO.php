@@ -59,13 +59,13 @@ class SideBarLinkDTO
         return $this->priority;
     }
 
-    #[ArrayShape(['priority' => "int", 'label' => "string", 'route' => "string"])]
+    #[ArrayShape(['priority' => "int", 'label' => "string", 'routeName' => "string"])]
     public function getLink(): array
     {
         return [
             'priority' => $this->getPriority(),
             'label' => $this->getLabel(),
-            'route' => $this->getRouteName(),
+            'routeName' => $this->getRouteName(),
         ];
     }
 }

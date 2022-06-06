@@ -6,9 +6,25 @@
 
     <services>
         <service id="WideMorph\Morph\Bundle\MorphViewBundle\Infrastructure\Twig\SideBarLink">
+            <argument type="service"
+                      key="$urlGenerator"
+                      id="Symfony\Component\Routing\Generator\UrlGeneratorInterface"/>
+            <argument type="service"
+                      key="$requestStack"
+                      id="Symfony\Component\HttpFoundation\RequestStack"/>
         </service>
         <service id="WideMorph\Morph\Bundle\MorphViewBundle\Infrastructure\Twig\SideBarLinkInterface"
                  alias="WideMorph\Morph\Bundle\MorphViewBundle\Infrastructure\Twig\SideBarLink">
+        </service>
+
+        <service id="WideMorph\Morph\Bundle\MorphViewBundle\Infrastructure\Twig\PageContext">
+        </service>
+        <service id="WideMorph\Morph\Bundle\MorphViewBundle\Infrastructure\Twig\PageContextInterface"
+                 alias="WideMorph\Morph\Bundle\MorphViewBundle\Infrastructure\Twig\PageContext">
+        </service>
+
+        <service id="WideMorph\Morph\Bundle\MorphViewBundle\Infrastructure\Twig\TwigExtension">
+            <tag name="twig.extension"/>
         </service>
     </services>
 </container>
