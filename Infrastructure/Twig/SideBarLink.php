@@ -46,12 +46,13 @@ class SideBarLink implements SideBarLinkInterface
      * {@inheritDoc}
      */
     public function addLink(
-        string $routeName,
+        string $name,
         string $label,
         int $priority = 0,
-        ?string $parentRouteName = null
+        bool $isCategory = false,
+        ?string $parentName = null
     ): void {
-        $this->links[] = new SideBarLinkDTO($routeName, $label, $priority, $parentRouteName);
+        $this->links[] = new SideBarLinkDTO($name, $label, $priority, $isCategory, $parentName);
     }
 
     /**
@@ -81,14 +82,14 @@ class SideBarLink implements SideBarLinkInterface
 
         // support only one level nesting
         foreach ($this->links as $link) {
-            if ($link->getParentRouteName()) {
-                if (!isset($links[$link->getParentRouteName()])) {
-                    $links[$link->getParentRouteName()]['children'] = [];
+            if ($link->getParentName()) {
+                if (!isset($links[$link->getParentName()])) {
+                    $links[$link->getParentName()]['children'] = [];
                 }
 
-                $links[$link->getParentRouteName()]['children'][] = $this->getLink($link);
+                $links[$link->getParentName()]['children'][] = $this->getLink($link);
             } else {
-                $links[$link->getRouteName()] = $this->getLink($link);
+                $links[$link->getName()] = $this->getLink($link);
             }
         }
 
@@ -119,7 +120,7 @@ class SideBarLink implements SideBarLinkInterface
     #[ArrayShape([
         'priority' => "int",
         'label' => "string",
-        'routeName' => "string",
+        'name' => "string",
         'isActive' => "bool",
         'route' => "string"
     ])]
@@ -127,8 +128,11 @@ class SideBarLink implements SideBarLinkInterface
     {
         $linkArray = $linkDTO->getLink();
 
-        $linkArray['route'] = $this->urlGenerator->generate($linkDTO->getRouteName());
-        $linkArray['isActive'] = $this->currentRoute === $linkDTO->getRouteName();
+        if (!$linkDTO->isCategory()) {
+            $linkArray['route'] = $this->urlGenerator->generate($linkDTO->getName());
+        }
+
+        $linkArray['isActive'] = $this->currentRoute === $linkDTO->getName();
 
         return $linkArray;
     }

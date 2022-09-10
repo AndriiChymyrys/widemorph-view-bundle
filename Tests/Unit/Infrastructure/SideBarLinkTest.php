@@ -48,8 +48,8 @@ class SideBarLinkTest extends TestCase
         $sideBarLink = new SideBarLink($generatorMock, $requestMock);
 
         foreach ($dto as $item) {
-            [$routeName, $label, $priority, $parentRouteName] = $item;
-            $sideBarLink->addLink($routeName, $label, $priority, $parentRouteName);
+            [$name, $label, $priority, $isCategory, $parentName] = $item;
+            $sideBarLink->addLink($name, $label, $priority, $isCategory, $parentName);
         }
 
         $this->assertSame($tree, $sideBarLink->getMenuLinks());
@@ -60,61 +60,61 @@ class SideBarLinkTest extends TestCase
         return [
             [
                 [
-                    ['firstRoute', 'first', 1, null],
-                    ['nextRoute_7', 'next_7', 7, null],
-                    ['nextRoute_0', 'next_0', 0, null],
-                    ['nextRoute_2', 'next_2', 2, null],
-                    ['nextRoute_negative_1', 'next_negative_1', -1, null],
-                    ['nextRoute_negative_0', 'next_negative_0', -0, null],
-                    ['nextRoute_10', 'next_10', 10, null],
+                    ['firstRoute', 'first', 1, false, null],
+                    ['nextRoute_7', 'next_7', 7, false, null],
+                    ['nextRoute_0', 'next_0', 0, false, null],
+                    ['nextRoute_2', 'next_2', 2, false, null],
+                    ['nextRoute_negative_1', 'next_negative_1', -1, false, null],
+                    ['nextRoute_negative_0', 'next_negative_0', -0, false, null],
+                    ['nextRoute_10', 'next_10', 10, false, null],
                 ],
                 [
                     [
                         'priority' => 10,
                         'label' => 'next_10',
-                        'routeName' => 'nextRoute_10',
+                        'name' => 'nextRoute_10',
                         'route' => 'generatedRoute',
                         'isActive' => false,
                     ],
                     [
                         'priority' => 7,
                         'label' => 'next_7',
-                        'routeName' => 'nextRoute_7',
+                        'name' => 'nextRoute_7',
                         'route' => 'generatedRoute',
                         'isActive' => false,
                     ],
                     [
                         'priority' => 2,
                         'label' => 'next_2',
-                        'routeName' => 'nextRoute_2',
+                        'name' => 'nextRoute_2',
                         'route' => 'generatedRoute',
                         'isActive' => false,
                     ],
                     [
                         'priority' => 1,
                         'label' => 'first',
-                        'routeName' => 'firstRoute',
+                        'name' => 'firstRoute',
                         'route' => 'generatedRoute',
                         'isActive' => false,
                     ],
                     [
                         'priority' => 0,
                         'label' => 'next_0',
-                        'routeName' => 'nextRoute_0',
+                        'name' => 'nextRoute_0',
                         'route' => 'generatedRoute',
                         'isActive' => false,
                     ],
                     [
                         'priority' => -0,
                         'label' => 'next_negative_0',
-                        'routeName' => 'nextRoute_negative_0',
+                        'name' => 'nextRoute_negative_0',
                         'route' => 'generatedRoute',
                         'isActive' => false,
                     ],
                     [
                         'priority' => -1,
                         'label' => 'next_negative_1',
-                        'routeName' => 'nextRoute_negative_1',
+                        'name' => 'nextRoute_negative_1',
                         'route' => 'generatedRoute',
                         'isActive' => false,
                     ],
@@ -122,26 +122,25 @@ class SideBarLinkTest extends TestCase
             ],
             [
                 [
-                    ['nextRoute_3', 'next_3', 3, null],
-                    ['nextRoute_7', 'next_7', 7, null],
-                    ['nextRoute_2', 'next_2', 2, 'nextRoute_7'],
-                    ['nextRoute_5', 'next_5', 5, 'nextRoute_7'],
-                    ['nextRoute_negative_1', 'next_negative_1', -1, 'nextRoute_7'],
-                    ['nextRoute_8', 'next_8', 8, null],
-                    ['nextRoute_4', 'next_4', 4, 'nextRoute_8'],
+                    ['nextRoute_3', 'next_3', 3, true, null],
+                    ['nextRoute_7', 'next_7', 7, true, null],
+                    ['nextRoute_2', 'next_2', 2, false, 'nextRoute_7'],
+                    ['nextRoute_5', 'next_5', 5, false, 'nextRoute_7'],
+                    ['nextRoute_negative_1', 'next_negative_1', -1, false, 'nextRoute_7'],
+                    ['nextRoute_8', 'next_8', 8, true, null],
+                    ['nextRoute_4', 'next_4', 4, false, 'nextRoute_8'],
                 ],
                 [
                     [
                         'priority' => 8,
                         'label' => 'next_8',
-                        'routeName' => 'nextRoute_8',
-                        'route' => 'generatedRoute',
+                        'name' => 'nextRoute_8',
                         'isActive' => false,
                         'children' => [
                             [
                                 'priority' => 4,
                                 'label' => 'next_4',
-                                'routeName' => 'nextRoute_4',
+                                'name' => 'nextRoute_4',
                                 'route' => 'generatedRoute',
                                 'isActive' => false,
                             ],
@@ -150,28 +149,27 @@ class SideBarLinkTest extends TestCase
                     [
                         'priority' => 7,
                         'label' => 'next_7',
-                        'routeName' => 'nextRoute_7',
-                        'route' => 'generatedRoute',
+                        'name' => 'nextRoute_7',
                         'isActive' => false,
                         'children' => [
                             [
                                 'priority' => 5,
                                 'label' => 'next_5',
-                                'routeName' => 'nextRoute_5',
+                                'name' => 'nextRoute_5',
                                 'route' => 'generatedRoute',
                                 'isActive' => false,
                             ],
                             [
                                 'priority' => 2,
                                 'label' => 'next_2',
-                                'routeName' => 'nextRoute_2',
+                                'name' => 'nextRoute_2',
                                 'route' => 'generatedRoute',
                                 'isActive' => false,
                             ],
                             [
                                 'priority' => -1,
                                 'label' => 'next_negative_1',
-                                'routeName' => 'nextRoute_negative_1',
+                                'name' => 'nextRoute_negative_1',
                                 'route' => 'generatedRoute',
                                 'isActive' => false,
                             ]
@@ -180,8 +178,7 @@ class SideBarLinkTest extends TestCase
                     [
                         'priority' => 3,
                         'label' => 'next_3',
-                        'routeName' => 'nextRoute_3',
-                        'route' => 'generatedRoute',
+                        'name' => 'nextRoute_3',
                         'isActive' => false,
                     ]
                 ]

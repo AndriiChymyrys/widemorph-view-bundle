@@ -12,18 +12,20 @@ namespace WideMorph\Morph\Bundle\MorphViewBundle\Infrastructure\Twig;
 interface SideBarLinkInterface
 {
     /**
-     * @param string $routeName
+     * @param string $name
      * @param string $label
      * @param int $priority
-     * @param string|null $parentRouteName
+     * @param bool $isCategory
+     * @param string|null $parentName
      *
      * @return void
      */
     public function addLink(
-        string $routeName,
+        string $name,
         string $label,
         int $priority = 0,
-        ?string $parentRouteName = null
+        bool $isCategory = false,
+        ?string $parentName = null
     ): void;
 
     /**

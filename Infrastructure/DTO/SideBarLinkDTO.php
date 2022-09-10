@@ -14,25 +14,27 @@ use JetBrains\PhpStorm\ArrayShape;
 class SideBarLinkDTO
 {
     /**
-     * @param string $routeName
+     * @param string $name
      * @param string $label
      * @param int $priority
-     * @param string|null $parentRouteName
+     * @param bool $isCategory
+     * @param string|null $parentName
      */
     public function __construct(
-        protected string $routeName,
+        protected string $name,
         protected string $label,
         protected int $priority = 0,
-        protected ?string $parentRouteName = null
+        protected bool $isCategory = false,
+        protected ?string $parentName = null
     ) {
     }
 
     /**
      * @return string
      */
-    public function getRouteName(): string
+    public function getName(): string
     {
-        return $this->routeName;
+        return $this->name;
     }
 
     /**
@@ -46,9 +48,9 @@ class SideBarLinkDTO
     /**
      * @return string|null
      */
-    public function getParentRouteName(): ?string
+    public function getParentName(): ?string
     {
-        return $this->parentRouteName;
+        return $this->parentName;
     }
 
     /**
@@ -59,13 +61,21 @@ class SideBarLinkDTO
         return $this->priority;
     }
 
-    #[ArrayShape(['priority' => "int", 'label' => "string", 'routeName' => "string"])]
+    /**
+     * @return bool
+     */
+    public function isCategory(): bool
+    {
+        return $this->isCategory;
+    }
+
+    #[ArrayShape(['priority' => "int", 'label' => "string", 'name' => "string"])]
     public function getLink(): array
     {
         return [
             'priority' => $this->getPriority(),
             'label' => $this->getLabel(),
-            'routeName' => $this->getRouteName(),
+            'name' => $this->getName(),
         ];
     }
 }
